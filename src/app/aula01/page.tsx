@@ -1,30 +1,31 @@
 'use client'
 import { useState } from "react";
-import styles from "./page.module.css";
+import styles from "./page.module.css"
 
 export default function Home() {
 
   const[number, setNumber] = useState(Number);
-  let n = 50;
+  let n = 10;
   const min = 1;
-  const max = n;
-  const list = [0];
+  let max = n;
+  let list = [];
   for(let i = 1; i <= n; i++){
     list.push(i);
   }
-  console.log(list)
   function handleClick(){
-    setNumber(min + (Math.random() * (max-min)));
-    list.splice(number);
-    n--;
-    console.log(number)
+    let retirar = ((min + (Math.random() * (max-min))) - 1).toFixed(0);
+    setNumber(list.splice(retirar, 1))
+    list.splice(retirar, 1)
+    
+    console.log(retirar)
+    max--;
   }
   return (
     <div className={styles.page}>
       <div className={styles.container}>
         <h1 className={styles.title}>Randomizer</h1>
         <button onClick={handleClick} className={styles.buttons}>random</button>
-        <p className={styles.randomNumber}>{number.toFixed(0)}</p>
+        <p className={styles.randomNumber}>{number}</p>
       </div>
     </div>
   );
